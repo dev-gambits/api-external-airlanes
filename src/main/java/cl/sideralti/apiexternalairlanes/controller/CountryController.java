@@ -66,10 +66,10 @@ public class CountryController {
         }
     }
     @GetMapping("/web_client_country")
-    public Flux<DataModel> getCountry1() {   //  throws AsyncRequestTimeoutException
+    public Flux<?> getCountryWebFlux() {   //  throws AsyncRequestTimeoutException
         try {
             return countryService.getCitiesRetrieve();
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
             return Flux.error(new Exception("server error"));
         }
@@ -96,8 +96,8 @@ public class CountryController {
     @PostMapping("/airline_http")
     public ResponseEntity<?> createAirlineHttp(@RequestBody AirlineModel body) {
         try {
-            String uri="https://api.instantwebtools.net/v1/airlines/";
-            logger.info("REQUEST BODY :"+ConvertToJson.setJsonString(body));
+            String uri = "https://api.instantwebtools.net/v1/airlines/" ;
+            logger.info("REQUEST BODY :" + ConvertToJson.setJsonString(body));
 
             HttpRequest results =   HttpRequest.post(uri)
                     .header("Content-Type", "application/json")
@@ -108,10 +108,9 @@ public class CountryController {
 
             return new ResponseEntity<>( status == 200 ? "Airline created successfully" : "Airline Not created successfully",status == 200 ? HttpStatus.OK: HttpStatus.BAD_REQUEST);
 
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
             return new ResponseEntity<>("Error!, Please try again", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

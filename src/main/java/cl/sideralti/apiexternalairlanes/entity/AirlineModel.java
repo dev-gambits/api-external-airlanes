@@ -2,8 +2,10 @@ package cl.sideralti.apiexternalairlanes.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class AirlineModel {
+public class AirlineModel implements Serializable {
     private long id;
     private String name;
     private String country;

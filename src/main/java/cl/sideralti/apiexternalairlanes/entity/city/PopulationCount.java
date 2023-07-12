@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
-public class PopulationCount {
+public class PopulationCount implements Serializable {
 
     @JsonProperty("year")
     private Boolean year;
@@ -19,8 +20,8 @@ public class PopulationCount {
     @JsonProperty("sex")
     private String sex;
 
-    @JsonProperty("reliability")
-    private String reliability;
+    @JsonProperty("reliabilty")
+    private String reliabilty;
 
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<>();

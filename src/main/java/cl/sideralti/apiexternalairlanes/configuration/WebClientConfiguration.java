@@ -7,12 +7,14 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.Collections;
+
 @Configuration
 public class WebClientConfiguration {
 
     @Bean
     public WebClient webClient() {
-        final int size = 16* 1024 * 1024;
+        final int size = 16 * 1024 * 1024;
         final ExchangeStrategies strategies = ExchangeStrategies.builder()
                 .codecs(codecs -> codecs.defaultCodecs().maxInMemorySize(size))
                 .build();
@@ -27,4 +29,6 @@ public class WebClientConfiguration {
 
         return webClient;
     }
+
+
 }
